@@ -1,0 +1,117 @@
+@import 'default';
+@import 'mixin';
+@import 'header';
+
+%container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn {
+    &.orange {
+        @include button($orange);
+
+        &:hover {
+            @include activeButton($orange);
+        }
+    }
+
+    &.blue {
+        @include button($blue);
+
+        &:hover {
+            @include activeButton($blue);
+        }
+    }
+    &.white{
+        @include button($white);
+        &:hover{
+            @include activeButton($white);
+            color: $orange;
+        }
+    }
+}
+
+.wrapper{
+    max-width: 1100px;
+    margin: 0 auto; 
+}
+.section{
+    margin-bottom: 80px;
+}
+.main{
+    background-color: $orange;
+    .wrapper{
+        @extend %container;
+        align-items: stretch;
+        .block{
+            width: 45%;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-direction: column;
+            .cover{
+                @include cover(100%);
+                img{
+                    transform: scalex(-1);
+                }
+            }
+            h1{
+                color: $white;
+                text-transform: uppercase;
+                @include font(900);
+                font-size: 50px;
+                font-style: italic;
+                margin-bottom: 30px;
+            }
+        }
+    }
+}
+.category{
+    .wrapper{
+        .container{
+            @extend %container;
+            align-items: stretch;
+            &:first-child{
+                margin-bottom: 3.5%;
+            }
+            .rectangle{
+                width: 31%;
+                transition: 0.4s;
+                border: 1px solid transparent;
+                &:hover{
+                    cursor: pointer;
+                    border: 1px solid &orange;
+                    img{
+                        filter: grayscale(0);
+                    }
+                    h2{
+                        text-shadow: 3px 3px $orange;
+                    }
+                }
+                &.big{
+                    width: 65.5%;
+                    .cover{
+                        @include cover(47.5%);
+                    }
+                }
+                .cover{
+                    @include cover(100%);
+                    h2{
+                        position: absolute;
+                        bottom: 40%;
+                        z-index: 1;
+                        color: $white;
+                        text-transform: uppercase;
+                        @include font(900);
+                        font-size: 32px;
+                        width: 100%;
+                        text-align: center;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+}
